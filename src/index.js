@@ -1,15 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import PostsIndex from './containers/PostsIndex.js';
-import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { logger } from 'redux-logger';
+
+import PostsList from './containers/PostsList';
+
+const reducers = combineReducers({
+ posts: (state = [], action) => state // TODO: implement postsReducer
+}); 
+
+const initialState = {
+  posts: [
+    {
+      id: 1,
+      photo: 'photo.jpg'
+    },
+    {
+      id: 2,
+      photo: 'rails.png'
+    }
+  ]
+};
+
+const middlewares = applyMiddleware(logger);
 
 ReactDOM.render(
-  <PostsIndex ></PostsIndex>,
+  <Provider store={createStore(reducers, initialState, middlewares)}>
+    <PostsList />
+  </Provider>,
   document.getElementById('root')
  );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
