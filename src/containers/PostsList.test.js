@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { PostsList } from './PostsList';
-import configureStore from 'redux-mock-store';
 
 describe('Rendering the app', () => {
   it('renders without crashing', () => {
@@ -17,7 +16,7 @@ describe('Connected React-Redux PostsList', () => {
 
   it('renders welcome message', () => {
     container = shallow(<PostsList />);   
-    const welcome = <div><h3>Blog</h3>Let's write a post!</div>;
+    const welcome = <div><h3>Blog</h3>Upload photo</div>;
 
     expect(container.contains(welcome)).toEqual(true);
   });

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './posts.scss';
 
 export class PostsList extends Component {
   renderPosts() {
@@ -19,9 +20,9 @@ export class PostsList extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="first-row">
           <h3>Blog</h3>
-          Let's write a post!
+          Upload photo
         </div>
         {this.renderPosts()}
       </div>
