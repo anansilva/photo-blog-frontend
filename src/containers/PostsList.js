@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchPosts } from '../actions/index';
+
 import './posts.scss';
 
 export class PostsList extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchPosts());
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.posts !== this.props.posts) {
+      this.props.dispatch(fetchPosts());
+    }
+  }
+
   renderPosts() {
     if (!this.props.posts || this.props.posts.length === 0) {
       return 'No Photos';

@@ -4,13 +4,19 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import thunk from 'redux-thunk';
 
+// internal modules
 import PostsList from './containers/PostsList';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss'
 
+// reducers
+import postsReducer from './reducers/posts_reducer';
+
+// State and reducers
 const reducers = combineReducers({
- posts: (state = [], action) => state // TODO: implement postsReducer
+ posts: postsReducer
 }); 
 
 const initialState = {
@@ -26,17 +32,17 @@ const initialState = {
   ]
 };
 
-const middlewares = applyMiddleware(logger);
+const middlewares = applyMiddleware(thunk, logger);
 
 ReactDOM.render(
-  <Provider store={createStore(reducers, initialState, middlewares)}>
+  <Provider store={createStore(reducers, {}, middlewares)}>
      <Router>
       <div className="thin-container">
       <Switch>
         <Route path="/" exact component={PostsList} />
       </Switch>
       </div>
-    </Router> 
+    </Router>
   </Provider>,
   document.getElementById('root')
  );
