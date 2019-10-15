@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
 
-import './posts.scss';
-
 export class PostsList extends Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
