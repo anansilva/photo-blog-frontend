@@ -9,24 +9,20 @@ export class PostsList extends Component {
     this.props.dispatch(fetchPosts());
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.posts !== this.props.posts) {
-      this.props.dispatch(fetchPosts());
-    }
-  }
+  // componentDidUpdate(prevProps, nextProps) {
+  //   if (prevProps.posts !== nextProps.props) {
+  //     this.props.dispatch(fetchPosts());
+  //   }
+  // }
 
   renderPosts() {
-    if (!this.props.posts || this.props.posts.length === 0) {
-      return 'No Photos';
-    } else {
-      return this.props.posts.map((post) => {
-        return (
-          <div className="post-item" key={post.id}>
-            {post.photo}
-          </div> 
-        );
-      });
-    }
+    return this.props.posts.map((post) => {
+      return (
+        <div className="post-item" key={post.id}>
+          <img src={"http://localhost:3000"+post.photo_thumbnail_url} alt={post.description} />
+        </div> 
+      );
+    });
   }
 
   render() {
