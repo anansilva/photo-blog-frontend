@@ -11,3 +11,16 @@ export const fetchPosts = () => {
     .then(response => response.json())
     .then(posts => dispatch(fetchedPosts(posts)))
 }
+
+export const createPost = (file) => {
+  const formData = new FormData();
+  formData.append("post[photo", file);
+
+  fetch(`${ROOT_URL}`, {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => response.json())
+    .catch(error => console.log(error)
+  );
+}
