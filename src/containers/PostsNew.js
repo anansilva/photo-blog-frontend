@@ -1,41 +1,41 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux'; 
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { createPost } from '../actions/index';
 
 class PostsNew extends Component {
-  onSubmit = (values) => {
-    //TODO
+  constructor(props) {
+    super(props)
+    this.state = {
+      file: {}
+    }
+  }
+
+  handleFileUpload = (e) => {
+    this.setState({ file: e.target.files[0]});
+  }
+
+  submitPost = () => {
+    this.props.createPost(this.state.file);
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <label htmlFor="Title">Title</label>
-          <Field
-            className="form-control"
-            label="Title"
-            name="title"
-            type="text"
-            component="input"
+        <form onSubmit={this.submitPost}>
+          <input
+            type='file'
+            onChange={this.handleFileUpload}
           />
-          <label htmlFor="content">Content</label>
-          <Field
-            className="form-control"
-            label="Photo"
-            name="photo"
-            component="input"
-            type="file"
-          />
-          <button className="btn btn-primary" type="submit" disabled={this.props.pristine || this.props.submitting}>
-            Create Post
-          </button>
+          <button className="btn btn-primary" type="submit">Create Post</button>
         </form>
       </div>
     );
   }
 }
 
-export default reduxForm({ form: 'newPostForm' })(
-  connect(null, { })(PostsNew)
-);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ createPost }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(PostsNew);
