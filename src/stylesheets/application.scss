@@ -32,30 +32,6 @@ h3 {
   border-radius: 0;
 }
 
-.form-control,
-.form-control:focus,
-.form-control:active,
-.form-control:active:focus {
-  border-color: white;
-  box-shadow: none;
-  outline: none !important;
-}
-
-.form-control {
-  border-radius: 0;
-  height: 54px;
-}
-
-input.form-control {
-  font-size: 22px;
-  font-family: 'Yeseva One';
-}
-
-textarea {
-  resize: none;
-  margin-bottom: 10px;
-}
-
 form a {
   margin-left: 10px;
 }
