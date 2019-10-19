@@ -1,3 +1,4 @@
+import { config } from '../constants';
 
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const GET_USER = 'GET_USER';
@@ -7,7 +8,7 @@ const currentUser = data => ({type: GET_USER, data, payload: data});
 
 export const fetchPosts = (token = '') => {
   return dispatch =>
-    fetch('http://localhost:3000/api/v1/posts', {
+    fetch(`${config.url.API_URL}/posts`, {
       method: 'GET',
       headers: { 'TOKEN': token }
     })
@@ -22,7 +23,7 @@ export const requestUserLogin = (request) => {
   formData.append("user[password]", request.user.password);
   
   return dispatch =>
-  fetch('http://localhost:3000/auth/login', {
+  fetch(`${config.url.API_URL_AUTH}/login`, {
     method: 'POST',
     body: formData
   })

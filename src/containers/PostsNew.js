@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { config } from '../constants';
 
 class PostsNew extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class PostsNew extends Component {
     const formData = new FormData();
     formData.append("post[photo]", file);
   
-    fetch('http://localhost:3000/api/v1/posts', {
+    fetch(`${config.url.API_URL}/posts`, {
       method: 'POST',
       body: formData,
       headers: { 'TOKEN': currentUser.token }

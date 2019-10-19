@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { config } from '../constants';
 
 class SignUpUser extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class SignUpUser extends Component {
     formData.append("user[password]", request.user.password);
     formData.append("user[password_confirmation]", request.user.password_confirmation);
     
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch(`${config.url.API_URL}/users`, {
       method: 'POST',
       body: formData
     })
