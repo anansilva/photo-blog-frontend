@@ -5,7 +5,11 @@ import { Link } from 'react-router-dom';
 
 export class PostsList extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchPosts());
+    if (this.props.currentUser.token) {
+      this.props.dispatch(fetchPosts(this.props.currentUser.token));
+    } else {
+      this.props.history.push('/auth/login');
+    }
   }
 
   renderPosts() {
@@ -34,7 +38,7 @@ export class PostsList extends Component {
 }
 
 function mapStateToProps(state) {
-  return { posts: state.posts };
+  return {posts: state.posts, currentUser: state.currentUser };
  } 
 
 export default connect(mapStateToProps)(PostsList);

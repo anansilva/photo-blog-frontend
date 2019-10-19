@@ -5,9 +5,12 @@ export const GET_USER = 'GET_USER';
 const fetchedPosts = posts => ({type: FETCH_POSTS, posts, payload: posts});
 const currentUser = data => ({type: GET_USER, data, payload: data});
 
-export const fetchPosts = () => {
+export const fetchPosts = (token = '') => {
   return dispatch =>
-    fetch('http://localhost:3000/api/v1/posts')
+    fetch('http://localhost:3000/api/v1/posts', {
+      method: 'GET',
+      headers: { 'TOKEN': token }
+    })
     .then(response => response.json())
     .then(posts => dispatch(fetchedPosts(posts)))
     .catch(error => console.log(error));
