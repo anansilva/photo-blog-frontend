@@ -13,6 +13,12 @@ class LoginUser extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.currentUser && this.props.currentUser.token) {
+      this.props.history.push('/posts');
+    }
+  }
+
   clearFields = () => {
     this.setState({email: '', password: '', password_confirmation: ''});
   }
@@ -63,8 +69,12 @@ class LoginUser extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { currentUser: state.currentUser };
+}
+
  function mapDispatchToProps(dispatch) {
   return bindActionCreators({ requestUserLogin }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(LoginUser);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginUser);
