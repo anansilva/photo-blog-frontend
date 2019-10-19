@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 export class PostsList extends Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
   }
-
-  // componentDidUpdate(prevProps, nextProps) {
-  //   if (prevProps.posts !== nextProps.props) {
-  //     this.props.dispatch(fetchPosts());
-  //   }
-  // }
 
   renderPosts() {
     return this.props.posts.map((post) => {
@@ -28,7 +23,9 @@ export class PostsList extends Component {
       <div>
         <div className="first-row">
           <h3>Blog</h3>
-          Upload photo
+          <Link className="btn btn-primary btn-cta" to="/posts/new">
+            Upload photo
+          </Link>
         </div>
         {this.renderPosts()}
       </div>

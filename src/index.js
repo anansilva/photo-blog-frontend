@@ -5,21 +5,22 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form';
 
 // internal modules
 import PostsList from './containers/PostsList';
 import PostsNew from './containers/PostsNew';
+import LoginUser from './containers/LoginUser'
 import 'bootstrap/dist/css/bootstrap.css';
 import './stylesheets/application.scss';
 
 // reducers
 import postsReducer from './reducers/posts_reducer';
+import currentUserReducer from './reducers/current_user_reducer';
 
 // State and reducers
 const reducers = combineReducers({
   posts: postsReducer,
-  form: formReducer
+  currentUser: currentUserReducer
 }); 
 
 const middlewares = applyMiddleware(thunk, logger);
@@ -30,8 +31,10 @@ ReactDOM.render(
      <Router>
       <div className="thin-container">
         <Switch>
+          <Route path="/" exact component={PostsList} />
           <Route path="/posts" exact component={PostsList} />
           <Route path="/posts/new" exact component={PostsNew} />
+          <Route path="/auth" exact component={LoginUser} /> 
         </Switch>
       </div>
     </Router>
