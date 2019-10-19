@@ -26,17 +26,12 @@ class SignUpUser extends Component {
       .catch(error => this.setState({error: error}));
   }
 
-  redirectUser = () => {
-    if (this.state.error) {
-      this.props.history.push('/signup');
-      alert(this.state.error);
-    } else {
-      this.props.history.push('/auth/login');
-    }
-  }
-
   clearFields = () => {
     this.setState({email: '', password: '', password_confirmation: ''});
+  }
+
+  handleFields = (e) => {
+    this.setState({[e.target.name]: e.target.value})
   }
 
   handleSubmit = (event) => {
@@ -55,8 +50,13 @@ class SignUpUser extends Component {
     this.redirectUser();
   }
 
-  handleFields = (e) => {
-    this.setState({[e.target.name]: e.target.value})
+  redirectUser = () => {
+    if (this.state.error) {
+      this.props.history.push('/signup');
+      alert(this.state.error);
+    } else {
+      this.props.history.push('/auth/login');
+    }
   }
   
   render() {
