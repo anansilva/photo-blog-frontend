@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export class PostsList extends Component {
   componentDidMount() {
-    if (this.props.currentUser.token) {
+    if (this.props.currentUser && this.props.currentUser.token) {
       this.props.dispatch(fetchPosts(this.props.currentUser.token));
     } else {
       this.props.history.push('/auth/login');

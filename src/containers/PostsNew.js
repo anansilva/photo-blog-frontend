@@ -1,13 +1,32 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux'; 
 import { connect } from 'react-redux';
-import { createPost } from '../actions/index';
 
 class PostsNew extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      error: null,
       file: {}
+    }
+  }
+
+  createPost = (file, currentUser) => {
+    const formData = new FormData();
+    formData.append("post[photo]", file);
+  
+    fetch('http://localhost:3000/api/v1/posts', {
+      method: 'POST',
+      body: formData,
+      headers: { 'TOKEN': currentUser.token }
+    })
+      .then(response => response.json())
+      .catch(error => this.setState({error: error})
+    );
+  }
+
+  componentDidMount() {
+    if (!(this.props.currentUser && this.props.currentUser.token)) {
+      this.props.history.push('/auth/login');
     }
   }
 
@@ -15,8 +34,18 @@ class PostsNew extends Component {
     this.setState({ file: e.target.files[0]});
   }
 
+  redirectUser = () => {
+    if (this.state.error || this.state.file === {}) {
+      this.props.history.push('/posts/new');
+      alert(this.state.error);
+    } else {
+      this.props.history.push('/posts');
+    }
+  }
+
   submitPost = () => {
-    this.props.createPost(this.state.file);
+    this.createPost(this.state.file, this.props.currentUser);
+    this.redirectUser();
   }
 
   render() {
@@ -34,8 +63,8 @@ class PostsNew extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createPost }, dispatch);
+function mapStateToProps(state) {
+  return { currentUser: state.currentUser };
 }
 
-export default connect(null, mapDispatchToProps)(PostsNew);
+export default connect(mapStateToProps)(PostsNew);

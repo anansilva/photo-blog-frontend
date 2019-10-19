@@ -16,19 +16,6 @@ export const fetchPosts = (token = '') => {
     .catch(error => console.log(error));
 }
 
-export const createPost = (file) => {
-  const formData = new FormData();
-  formData.append("post[photo]", file);
-
-  fetch('http://localhost:3000/api/v1/posts', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => response.json())
-    .catch(error => console.log(error)
-  );
-}
-
 export const requestUserLogin = (request) => {
   const formData = new FormData();
   formData.append("user[email]", request.user.email);
