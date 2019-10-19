@@ -1,35 +1,62 @@
 import React, { Component } from 'react';
 
-function createUser(request) {
-  const formData = new FormData();
-  
-  formData.append("user[email]", request.user.email);
-  formData.append("user[password]", request.user.password);
-  formData.append("user[password_confirmation]", request.user.password_confirmation);
-  
-  fetch('http://localhost:3000/api/v1/users', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => response.json())
-    .catch(error => console.log(error)
-  );
-}
-
 class SignUpUser extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      error: null,
+      email: '',
+      password: '',
+      passwordConfirmation: ''
+    }
+  }
+
+  createUser = (request) => {
+    const formData = new FormData();
+    
+    formData.append("user[email]", request.user.email);
+    formData.append("user[password]", request.user.password);
+    formData.append("user[password_confirmation]", request.user.password_confirmation);
+    
+    fetch('http://localhost:3000/api/v1/users', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .catch(error => this.setState({error: error}));
+  }
+
+  redirectUser = () => {
+    if (this.state.error) {
+      this.props.history.push('/signup');
+      alert(this.state.error);
+    } else {
+      this.props.history.push('/auth/login');
+    }
+  }
+
+  clearFields = () => {
+    this.setState({email: '', password: '', password_confirmation: ''});
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const password_confirmation = document.getElementById('confirm-password').value;
+    
     const request = {
       user: {
-        email: email,
-        password: password,
-        password_confirmation: password_confirmation
+        email: this.state.email,
+        password: this.state.password,
+        password_confirmation: this.state.passwordConfirmation
       }
     };
-    createUser(request);
+
+    this.createUser(request);
+    this.clearFields();
+    this.redirectUser();
+  }
+
+  handleFields = (e) => {
+    this.setState({[e.target.name]: e.target.value})
   }
   
   render() {
@@ -39,15 +66,27 @@ class SignUpUser extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
-            <input name="email" id="email" type="email" className="form-control" />
+            <input name="email"
+                   id="email"
+                   type="email"
+                   className="form-control"
+                   onChange={this.handleFields} />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password:</label>
-            <input name="password" id="password" type="password" className="form-control" />
+            <input name="password"
+                   id="password"
+                   type="password"
+                   className="form-control"
+                   onChange={this.handleFields} />
           </div>
           <div className="form-group">
             <label htmlFor="password">Confirm Password:</label>
-            <input name="confirm-password" id="confirm-password" type="password" className="form-control" />
+            <input name="passwordConfirmation"
+                   id="passwordConfirmation"
+                  type="password"
+                  className="form-control"
+                  onChange={this.handleFields} />
           </div>
           <button type="submit" className="btn btn-dark">Submit</button>
         </form>
