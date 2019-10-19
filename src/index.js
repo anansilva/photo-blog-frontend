@@ -9,7 +9,8 @@ import thunk from 'redux-thunk';
 // internal modules
 import PostsList from './containers/PostsList';
 import PostsNew from './containers/PostsNew';
-import LoginUser from './containers/LoginUser'
+import LoginUser from './containers/LoginUser';
+import SignUpUser from './containers/SignUpUser';
 import 'bootstrap/dist/css/bootstrap.css';
 import './stylesheets/application.scss';
 
@@ -34,7 +35,8 @@ ReactDOM.render(
           <Route path="/" exact component={PostsList} />
           <Route path="/posts" exact component={PostsList} />
           <Route path="/posts/new" exact component={PostsNew} />
-          <Route path="/auth" exact component={LoginUser} /> 
+          <Route path="/auth/login" exact component={LoginUser} />
+          <Route path="/auth/signup" exact component={SignUpUser} />
         </Switch>
       </div>
     </Router>
