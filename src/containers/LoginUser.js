@@ -4,13 +4,36 @@ import { connect } from 'react-redux';
 import { requestUserLogin } from '../actions/index';
 
 class LoginUser extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      error: null,
+      email: '',
+      password: '',
+    }
+  }
+
+  clearFields = () => {
+    this.setState({email: '', password: '', password_confirmation: ''});
+  }
+
+  handleFields = (e) => {
+    this.setState({[e.target.name]: e.target.value})
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const request = {"user": {"email": email, "password": password}};
+
+    const request = {
+      user: {
+        email: this.state.email,
+        password: this.state.password
+      }
+    };
+
     this.props.requestUserLogin(request);
-  }      
+    this.clearFields();
+  }
 
   render() {
     return (
@@ -19,11 +42,19 @@ class LoginUser extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email: </label>
-            <input name="email" id="email" type="email" className="form-control" />
+            <input name="email"
+                   id="email"
+                   type="email"
+                   className="form-control"
+                   onChange={this.handleFields} />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password:</label>
-            <input name="password" id="password" type="password" className="form-control" />
+            <input name="password"
+                   id="password"
+                   type="password"
+                   className="form-control"
+                   onChange={this.handleFields} />
           </div>
           <button type="submit" className="btn btn-dark">Submit</button>
         </form>
