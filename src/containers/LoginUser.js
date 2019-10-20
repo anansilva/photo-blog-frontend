@@ -44,7 +44,7 @@ class LoginUser extends Component {
 
   signUpMesage = () => {
     return (
-      <div className="d-flex justify-content-start">
+      <div className="d-flex justify-content-start my-2">
         <p className="mr-2">Don't have an account yet?</p>
         <Link to="/auth/signup">Sign up here</Link>
       </div>

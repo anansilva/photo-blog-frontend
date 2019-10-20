@@ -32,3 +32,7 @@ export const requestUserLogin = (request) => {
     .catch(error => console.log(error)
   );
 }
+
+export const cleanCurrentUser = () => {
+  return ({type: GET_USER, payload: []})
+}

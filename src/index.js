@@ -11,6 +11,7 @@ import PostsList from './containers/PostsList';
 import PostsNew from './containers/PostsNew';
 import LoginUser from './containers/LoginUser';
 import SignUpUser from './containers/SignUpUser';
+import LogoutUser from './containers/LogoutUser';
 import Navbar from './components/Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
 import './stylesheets/application.scss';
@@ -39,6 +40,7 @@ ReactDOM.render(
           <Route path="/posts/new" exact component={PostsNew} />
           <Route path="/auth/login" exact component={LoginUser} />
           <Route path="/auth/signup" exact component={SignUpUser} />
+          <Route path="/auth/logout" exact component={LogoutUser} />
         </Switch>
       </div>
     </Router>
