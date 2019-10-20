@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'; 
 import { connect } from 'react-redux';
 import { requestUserLogin } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 class LoginUser extends Component {
   constructor(props) {
@@ -41,6 +42,15 @@ class LoginUser extends Component {
     this.clearFields();
   }
 
+  signUpMesage = () => {
+    return (
+      <div className="d-flex justify-content-start">
+        <p className="mr-2">Don't have an account yet?</p>
+        <Link to="/auth/signup">Sign up here</Link>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div>
@@ -64,6 +74,7 @@ class LoginUser extends Component {
           </div>
           <button type="submit" className="btn btn-dark">Submit</button>
         </form>
+        {this.signUpMesage()}
       </div>
     );
   }
