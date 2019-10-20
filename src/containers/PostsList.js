@@ -15,8 +15,8 @@ export class PostsList extends Component {
   renderPosts() {
     return this.props.posts.map((post) => {
       return (
-        <div className="post-item" key={post.id}>
-          <img src={`${config.url.BASE_URL}`+ post.photo_thumbnail_url} alt={post.description} />
+        <div className="post-item text-center" key={post.id}>
+          <img className="img-thumbnail item" src={`${config.url.BASE_URL}`+ post.photo_thumbnail_url} alt={post.description} />
         </div> 
       );
     });
@@ -25,7 +25,7 @@ export class PostsList extends Component {
   render() {
     if (this.props.posts.length > 0) {
       return (
-        <div>
+        <div className="post-list">
           {this.renderPosts()}
         </div>
       );

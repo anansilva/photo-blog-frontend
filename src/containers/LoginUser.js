@@ -53,7 +53,7 @@ class LoginUser extends Component {
 
   render() {
     return (
-      <div>
+      <div className="p-20">
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
