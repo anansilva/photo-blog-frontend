@@ -1,12 +1,12 @@
 # Photo Blog - React/Redux 📷
 
-This app allows you to store and list your photos. (Check it out!)[http://photo-blog-react.herokuapp.com/]
+This app allows you to store and see your photos as thumbnails. (Check it out!)[http://photo-blog-react.herokuapp.com/]
 
-It uses a backend rails api, check the [documentation here](https://github.com/anansilva/a-photo-blog-api)
+It uses a rails api as backend, check the [documentation here](https://github.com/anansilva/a-photo-blog-api)
 
 ## Sign Up
 
-**NOTE: You can skip this step and use an existing test user. Check the next endpoint - Login user**
+**NOTE: You can skip this step and use an existing test user. Check the Login user section**
 
 Go to http://photo-blog-react.herokuapp.com/, click on the sign up link and create a new account.
 
