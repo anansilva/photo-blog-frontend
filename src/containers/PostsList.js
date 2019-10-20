@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
 import { Link } from 'react-router-dom';
+import { config } from '../constants';
 
 export class PostsList extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ export class PostsList extends Component {
     return this.props.posts.map((post) => {
       return (
         <div className="post-item" key={post.id}>
-          <img src={"http://localhost:3000"+post.photo_thumbnail_url} alt={post.description} />
+          <img src={`${config.url.BASE_URL}`+ post.photo_thumbnail_url} alt={post.description} />
         </div> 
       );
     });
