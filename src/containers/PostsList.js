@@ -23,11 +23,17 @@ export class PostsList extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.renderPosts()}
-      </div>
-    );
+    if (this.props.posts.length > 0) {
+      return (
+        <div>
+          {this.renderPosts()}
+        </div>
+      );
+    } else if (this.props.dispatch && this.props.posts.length === 0) {
+      return (
+        <p>No Photos yet!</p>
+      )
+    }
   }
 }
 
