@@ -6,9 +6,9 @@ class Navbar extends Component {
   toggleNavItems = () => {
     if (this.props.currentUser && this.props.currentUser.token) {
       return (
-        <ul class="nav navbar-nav navbar-right">
-          <li className="nav-item"><NavLink exact className="nav-link" to="/logout">Log Out</NavLink></li>
+        <ul className="nav navbar-nav navbar-right">
           <li className="nav-item"><NavLink exact className="nav-link" to="/posts/new">Upload photo</NavLink></li>
+          <li className="nav-item"><NavLink exact className="nav-link" to="/logout">Log Out</NavLink></li>
         </ul>
       )
     }
