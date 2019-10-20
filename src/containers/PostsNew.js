@@ -55,6 +55,7 @@ class PostsNew extends Component {
         <form onSubmit={this.submitPost}>
           <input
             type='file'
+            accept='image/png, image/jpeg'
             onChange={this.handleFileUpload}
           />
           <button className="btn btn-primary" type="submit">Create Post</button>
