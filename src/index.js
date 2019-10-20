@@ -11,6 +11,7 @@ import PostsList from './containers/PostsList';
 import PostsNew from './containers/PostsNew';
 import LoginUser from './containers/LoginUser';
 import SignUpUser from './containers/SignUpUser';
+import Navbar from './components/Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
 import './stylesheets/application.scss';
 
@@ -31,6 +32,7 @@ ReactDOM.render(
   <Provider store={createStore(reducers, middlewares)}>
      <Router>
       <div className="thin-container">
+        <Navbar />
         <Switch>
           <Route path="/" exact component={PostsList} />
           <Route path="/posts" exact component={PostsList} />

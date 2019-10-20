@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
-import { Link } from 'react-router-dom';
 import { config } from '../constants';
 
 export class PostsList extends Component {
@@ -26,12 +25,6 @@ export class PostsList extends Component {
   render() {
     return (
       <div>
-        <div className="first-row">
-          <h3>Blog</h3>
-          <Link className="btn btn-primary btn-cta" to="/posts/new">
-            Upload photo
-          </Link>
-        </div>
         {this.renderPosts()}
       </div>
     );
