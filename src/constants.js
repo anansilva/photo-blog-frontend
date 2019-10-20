@@ -1,7 +1,7 @@
 const prod = {
   url: {
-   API_URL: 'https://photo-blog-api/api/v1',
-   API_URL_AUTH: 'https://photo-blog-api/auth'
+   API_URL: 'https://photo-blog-api.herokuapp.com/api/v1',
+   API_URL_AUTH: 'https://photo-blog-api.herokuapp.com/auth'
   }
  };
 
