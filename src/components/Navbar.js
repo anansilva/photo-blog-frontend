@@ -7,8 +7,14 @@ class Navbar extends Component {
     if (this.props.currentUser && this.props.currentUser.token) {
       return (
         <ul className="nav navbar-nav navbar-right">
-          <li className="nav-item"><NavLink exact className="nav-link" to="/posts/new">Upload photo</NavLink></li>
-          <li className="nav-item"><NavLink exact className="nav-link" to="/auth/logout">Log Out</NavLink></li>
+          <li className="nav-item">
+            <NavLink exact
+                     className="nav-link" activeClassName="active"
+                     to="/posts/new">Upload photo</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink exact className="nav-link" to="/auth/logout">Log Out</NavLink>
+          </li>
         </ul>
       )
     }
